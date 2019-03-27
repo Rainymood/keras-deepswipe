@@ -1,6 +1,6 @@
-﻿# Keras Project Templa
+﻿# Keras DeepSwipe
 
-A project template to simplify building and training deep learning models using Keras.
+End-to-end deep learning model for natural gesture recognition powered by Keras.
 
 # Table of contents
 
