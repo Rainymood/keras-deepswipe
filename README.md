@@ -5,6 +5,7 @@ End-to-end deep learning model for natural gesture recognition powered by Keras.
 # TODO
 
 - [x] Copy preprocessed data to `/data`
+- [ ] Hardcoded input size to config.json `(NUM_FRAMES, HEIGHT, WIDTH, ...)` in `build_model()`
 - [ ] Create `deepswipe_model.py`
 - [ ] Create `deepswipe_data_loader.py`
 - [ ] Create `deepswipe_trainer.py`
@@ -63,14 +64,22 @@ python main.py -c configs/simple_mnist_config.json
 ```
 2. Start Tensorboard visualization using:
 ```shell
-tensorboard --logdir=experiments/simple_mnist/logs
+tensorboard --logdir=experiments/<YYYY-MM-DD>/simple_mnist/logs
 ```
+*Note*: One has to fill in the appropriate date.
 
 <div align="center">
 
 <img align="center" width="600" src="https://github.com/Ahmkel/Keras-Project-Template/blob/master/figures/Tensorboard_demo.PNG?raw=true">
 
 </div>
+
+# Running the main project
+
+```shell
+python main_deepswipe.py -c configs/deepswipe_config.json
+```
+
 
 # Comet.ml Integration
 Support for Comet.ml is integrated. This allows you to see all your hyper-params, metrics, graphs, dependencies and more including real-time metrics.
