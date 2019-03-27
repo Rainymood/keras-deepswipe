@@ -21,8 +21,8 @@ End-to-end deep learning model for natural gesture recognition powered by Keras.
 
 Clone the repository
 ```shell
-git clone https://github.com/Ahmkel/Keras-Project-Template
-cd Keras-Project-Template
+git clone https://github.com/Rainymood/keras-deepswipe
+cd keras-deepswipe
 ```
 Set-up the virtual environment
 ```shell
@@ -134,7 +134,6 @@ You can also link your Github repository to your comet.ml project for full versi
      └── utils.py       - util functions for parsing arguments.
 ```
 
-
 ## Main Components
 
 ### Models
@@ -142,7 +141,6 @@ You need to:
 1. Create a model class that inherits from **BaseModel**.
 2. Override the ***build_model*** function which defines your model.
 3. Call ***build_model*** function from the constructor.
-
 
 ### Trainers
 You need to:
@@ -166,7 +164,6 @@ You need to:
 ### Configs
 You need to define a .json file that contains your experiment and model configurations such as the experiment name, the batch size, and the number of epochs.
 
-
 ### Main
 Responsible for building the pipeline.
 1. Parse the config file
@@ -187,19 +184,5 @@ python from_config.py -c configs/simple_mnist_from_config.json
 python from_config.py -c configs/conv_mnist_from_config.json
 ```
 
-# Example Projects
-* [Toxic comments classification using Convolutional Neural Networks and Word Embedding](https://github.com/Ahmkel/Toxic-Comments-Competition-Kaggle)
-
-
-# Future Work
-Create a command line tool for Keras project scaffolding where the user defines a data loader, a model, a trainer and runs the tool to generate the whole project. (This is somewhat complete now by loading each of these from the config)
-
-
-# Contributing
-Any contributions are welcome including improving the template and example projects.
-
 # Acknowledgements
-This project template is based on [MrGemy95](https://github.com/MrGemy95)'s [Tensorflow Project Template](https://github.com/MrGemy95/Tensorflow-Project-Template).
-
-
-Thanks for my colleagues [Mahmoud Khaled](https://github.com/MahmoudKhaledAli), [Ahmed Waleed](https://github.com/Rombux) and [Ahmed El-Gammal](https://github.com/AGammal) who worked on the initial project that spawned this template.
+The structure of this project is built off the [Keras Project Template](https://github.com/Ahmkel/Keras-Project-Template#getting-started).
