@@ -12,6 +12,9 @@ data/
 # VSCode
 .vscode/
 
+# Notebooks
+notebooks/
+
 # Distribution / packaging
 .Python
 env/
