@@ -4,9 +4,9 @@ End-to-end deep learning model for natural gesture recognition powered by Keras.
 
 # TODO
 
-- [x] Copy preprocessed data to `/data`
-- [ ] Hardcoded input size to config.json `(NUM_FRAMES, HEIGHT, WIDTH, ...)` in `build_model()`
-- [ ] Create `deepswipe_model.py`
+- [x] Copy preprocessed data to `/data` (Wed Mar 27 14:24:26 CET 2019)
+- [x] Move hardcoded input size to config.json `(NUM_FRAMES, HEIGHT, WIDTH, ...)` in `build_model()`  (Wed Mar 27 14:24:26 CET 2019)
+- [x] Create `deepswipe_model.py` (Wed Mar 27 14:24:26 CET 2019)
 - [ ] Create `deepswipe_data_loader.py`
 - [ ] Create `deepswipe_trainer.py`
 - [ ] Train model

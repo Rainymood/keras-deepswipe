@@ -6,22 +6,24 @@ from models.i3d_inception import Inception_Inflated3d
 class DeepSwipeModel(BaseModel):
     def __init__(self, config):
         super(DeepSwipeModel, self).__init__(config)
+
+        # read in config
+        self.input_shape = tuple(self.config.trainer.dim) + (self.config.trainer.n_channels,) # add two tuples, json doesnt support tuples
+        self.n_classes = self.config.trainer.n_channels
+
+        print('Shape of input_size:', self.input_shape)
+
+        # build model
+        print('Building the model.')
         self.build_model()
 
     def build_model(self):
-        # TODO: add this to config json
-        NUM_FRAMES = 10
-        FRAME_HEIGHT = 224
-        FRAME_WIDTH = 224
-        NUM_RGB_CHANNELS = 3
-        NUM_CLASSES = 3
-
         print('Creating Inception_Inflated3d model.')
         rgb_model = Inception_Inflated3d(
                         include_top=False, # no prediction layer
                         weights='rgb_kinetics_only',
-                        input_shape=(NUM_FRAMES, FRAME_HEIGHT, FRAME_WIDTH, NUM_RGB_CHANNELS),
-                        classes=NUM_CLASSES)
+                        input_shape=self.input_shape,
+                        classes=self.n_classes)
 
         # Load in old model
         print('Loading in old model.')

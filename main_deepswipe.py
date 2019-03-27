@@ -4,7 +4,7 @@ data_loader, the model, and finally the trainer. It then trains the model
 according to the specifications in the .json config file."""
 
 from __future__ import print_function
-from data_loader.simple_mnist_data_loader import SimpleMnistDataLoader
+from data_loader.deepswipe_data_loader import DeepSwipeDataLoader
 from models.deepswipe_model import DeepSwipeModel
 from trainers.simple_mnist_trainer import SimpleMnistModelTrainer
 from utils.config import process_config
@@ -25,17 +25,8 @@ def main():
         config.callbacks.tensorboard_log_dir, config.callbacks.checkpoint_dir
     ])
 
-    # print('Create the data generator.')
-    # data_loader = SimpleMnistDataLoader(config)
-
     print('Create the model.')
     model = DeepSwipeModel(config)
-
-    print('Create the trainer')
-    # trainer = SimpleMnistModelTrainer(model.model, data_loader.get_train_data(), config)
-
-    print('Start training the model.')
-    # trainer.train()
 
 
 if __name__ == '__main__':
