@@ -2,6 +2,10 @@
 
 End-to-end deep learning model for natural gesture recognition powered by Keras.
 
+# TODO
+
+- [ ] Create a data pipeline from raw data to processed data. Currently just loads data from `/data`.
+
 # Table of contents
 
 - [Installation](#installation)
