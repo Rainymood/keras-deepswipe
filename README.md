@@ -148,14 +148,6 @@ You need to:
 ### Configs
 You need to define a .json file that contains your experiment and model configurations such as the experiment name, the batch size, and the number of epochs.
 
-### Main
-Responsible for building the pipeline.
-1. Parse the config file
-2. Create an instance of your data loader class.
-3. Create an instance of your model class.
-4. Create an instance of your trainer class.
-5. Train your model using ".Train()" function on the trainer object.
-
 ### From Config
 We can now load models without having to explicitly create an instance of each class. Look at:
 1. from_config.py: this can load any config file set up to point to the right modules/classes to import
