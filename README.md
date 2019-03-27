@@ -1,9 +1,10 @@
-﻿# Keras Project Template [![CometML](https://img.shields.io/badge/comet.ml-track-brightgreen.svg)](https://www.comet.ml)
+﻿# Keras Project Templa
 
 A project template to simplify building and training deep learning models using Keras.
 
 # Table of contents
 
+- [Installation](#installation)
 - [Getting Started](#getting-started)
 - [Running The Demo Project](#running-the-demo-project)
 - [Comet.ml Integration](#cometml-integration)
@@ -15,6 +16,26 @@ A project template to simplify building and training deep learning models using 
 - [Example Projects](#example-projects)
 - [Contributing](#contributing)
 - [Acknowledgements](#acknowledgements)
+
+# Installation
+
+Clone the repository
+```shell
+git clone https://github.com/Ahmkel/Keras-Project-Template
+cd Keras-Project-Template
+```
+Set-up the virtual environment
+```shell
+virtualenv --system-site-packages -p python3 venv
+```
+Note that `/venv` is included in `.gitignore`. Now enter the virutal environment
+```shell
+. venv/bin/activate
+```
+Install dependencies
+```shell
+pip install -r requirements.txt
+```
 
 # Getting Started
 This template allows you to simply build and train deep learning models with checkpoints and tensorboard visualization.
