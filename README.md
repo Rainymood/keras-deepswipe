@@ -9,12 +9,8 @@ End-to-end deep learning model for natural gesture recognition powered by Keras.
 - [Running The Demo Project](#running-the-demo-project)
 - [Comet.ml Integration](#cometml-integration)
 - [Template Details](#template-details)
-    - [Project Architecture](#project-architecture)
     - [Folder Structure](#folder-structure)
     - [Main Components](#main-components)
-- [Future Work](#future-work)
-- [Example Projects](#example-projects)
-- [Contributing](#contributing)
 - [Acknowledgements](#acknowledgements)
 
 # Installation
@@ -49,7 +45,7 @@ In order to get started we have to:
 python main.py -c [path to configuration file]
 ```
 
-# Example
+# Running The Demo Project
 A simple model for the mnist dataset is available to test.
 To run the demo project:
 1. Start the training using:
