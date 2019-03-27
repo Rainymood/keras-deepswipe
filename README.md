@@ -76,11 +76,6 @@ For example:  `"comet_api_key": "your key here"`
 
 # Template Details
 
-## Project Architecture
-
-</div>
-
-
 ## Folder Structure
 
 ```
