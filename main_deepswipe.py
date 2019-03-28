@@ -4,12 +4,14 @@ data_loader, the model, and finally the trainer. It then trains the model
 according to the specifications in the .json config file."""
 
 from __future__ import print_function
-from data_loader.deepswipe_data_loader import DeepSwipeDataLoader
+from data_loader.deepswipe_data_loader import DeepSwipeDataGenerator
 from models.deepswipe_model import DeepSwipeModel
-from trainers.simple_mnist_trainer import SimpleMnistModelTrainer
+from trainers.deepswipe_trainer import DeepSwipeTrainer
 from utils.config import process_config
 from utils.dirs import create_dirs
 from utils.utils import get_args
+import os
+import numpy as np 
 
 def main():
     """Runs the main deep learning pipeline."""
@@ -25,9 +27,38 @@ def main():
         config.callbacks.tensorboard_log_dir, config.callbacks.checkpoint_dir
     ])
 
+    # TODO: Refactor this 
+    # all_files = [filename for filename in os.listdir('data') if filename.endswith('.npy')] 
+    # for filename in all_files:
+    #     tmp = np.load('data/' + filename)
+    #     print("{} = {}.shape".format(tmp.shape, filename))
+
+    # TODO: Refactor this 
+    partition = {}
+    all_ids = [filename.split('.')[0] for filename in os.listdir('data') if filename.endswith('.npy')] 
+    partition['train'] = all_ids[50:]
+    partition['validation'] = all_ids[:50]
+
+    labels = {}
+    labels_ids = [filename.split('.')[0] for filename in os.listdir('data') if filename.endswith('.npy')] 
+    labels_values = [1 if 'swipe_positive_right' in filename else -1 if 'swipe_positive_left' in filename else 0 for filename in os.listdir('data') if filename.endswith('.npy')] 
+    labels = dict(zip(labels_ids, labels_values))
+
+    print('Create the training and validation data generators.')
+    training_generator = DeepSwipeDataGenerator(config, partition['train'], labels)
+    validation_generator = DeepSwipeDataGenerator(config, partition['validation'], labels)
+    data_generator = (training_generator, validation_generator)
+
     print('Create the model.')
     model = DeepSwipeModel(config)
+    
+    print('Create the trainer')
+    trainer = DeepSwipeTrainer(model.model, data_generator, config)
+
+    print('Start training the model.')
+    trainer.train()
 
 
 if __name__ == '__main__':
     main()
+
