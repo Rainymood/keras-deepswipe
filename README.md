@@ -83,7 +83,7 @@ python main_deepswipe.py -c configs/deepswipe_config.json
 And then for the visualisation you can run 
 
 ```shell
-tensorboard --logdir=experiments/<YYYY-MM-DD>/deepswipe/log
+tensorboard --logdir=experiments/<YYYY-MM-DD>/deepswipe/logs
 ```
 
 # Comet.ml Integration
@@ -109,21 +109,26 @@ For example:  `"comet_api_key": "your key here"`
 │
 ├── model               - this folder contains the models of your project.
 │   └── simple_mnist_model.py
+│   └── i3d_inception.py
+│   └── deepswipe_model.py
 │
 │
 ├── trainer             - this folder contains the trainers of your project.
 │   └── simple_mnist_trainer.py
+│   └── deepswipe_trainer.py
 │
 |
 ├── data_loader         - this folder contains the data loaders of your project.
 │   └── simple_mnist_data_loader.py
+│   └── deepswipe_data_loader.py
 │
 │
 ├── configs             - this folder contains the experiment and model configs of your project.
 │   └── simple_mnist_config.json
+│   └── deepswipe_config.json
 │
 │
-├── datasets            - this folder might contain the datasets of your project.
+├── data                - this folder might contain the datasets of your project.
 │
 │
 └── utils               - this folder contains any utils you need.
