@@ -44,3 +44,7 @@ class DeepSwipeModel(BaseModel):
                       loss='categorical_crossentropy',
                       metrics=['accuracy']
                      )
+
+    def load_weights(self, weights_path):
+        self.model.load_weights(weights_path)
+        

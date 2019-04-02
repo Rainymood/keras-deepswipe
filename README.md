@@ -11,6 +11,8 @@ End-to-end deep learning model for natural gesture recognition powered by Keras.
 - [x] Create `deepswipe_trainer.py`
 - [ ] Train model
 - [ ] Create a data pipeline from raw data to processed data (get rid of files <10 frames, take last 10 frames)
+- [ ] Refactor `config.trainer.crop : ['first','last','random']
+- [ ] Gather new training data 
 
 # Table of contents
 
