@@ -47,4 +47,10 @@ class DeepSwipeModel(BaseModel):
 
     def load_weights(self, weights_path):
         self.model.load_weights(weights_path)
+
+    def predict(self, input_video):
+        print(input_video.shape)
+        print(self.model.summary)
+        self.model.predict(input_video)
+        
         
