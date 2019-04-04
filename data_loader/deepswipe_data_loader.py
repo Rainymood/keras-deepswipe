@@ -1,28 +1,12 @@
 from base.base_data_loader import BaseDataLoader
 from keras.datasets import mnist
-import keras 
-import numpy as np 
-
-class DeepSwipeDataLoader(BaseDataLoader):
-    def __init__(self, config):
-        super(DeepSwipeDataLoader, self).__init__(config)
-        (self.X_train, self.y_train), (self.X_test, self.y_test) = mnist.load_data()
-        self.X_train = self.X_train.reshape((-1, 28 * 28))
-        self.X_test = self.X_test.reshape((-1, 28 * 28))
-
-    def get_train_data(self):
-        return self.X_train, self.y_train
-
-    def get_test_data(self):
-        return self.X_test, self.y_test
+import keras
+import numpy as np
+import os
 
 class DeepSwipeDataGenerator(keras.utils.Sequence):
     """Generates data for Keras"""
-    def __init__(self,
-                 config,
-                 list_IDs,
-                 labels,
-                 shuffle=True):
+    def __init__(self, config, shuffle=True):
         # 'Initialization'
         self.config = config # because we don't super(...).__init__(config)
         self.dim = tuple(self.config.trainer.dim)
@@ -31,9 +15,20 @@ class DeepSwipeDataGenerator(keras.utils.Sequence):
         self.n_classes = self.config.trainer.n_classes
         self.shuffle = shuffle
 
-        self.labels = labels
-        self.list_IDs = list_IDs
+        self.list_IDs = {} # partition
+        self.labels = {}
+        self.__make_partition()
         self.on_epoch_end()
+
+    def __make_partition(self):
+        """Sets list_IDs/partition and labels"""
+        all_ids = [filename.split('.')[0] for filename in os.listdir('./data') if filename.endswith('.npy')]
+        self.list_IDs['train'] = all_ids[50:]
+        self.list_IDs['validation'] = all_ids[:50]
+
+        labels_ids = [filename.split('.')[0] for filename in os.listdir('./data') if filename.endswith('.npy')]
+        labels_values = [1 if 'swipe_positive_right' in filename else -1 if 'swipe_positive_left' in filename else 0 for filename in os.listdir('data') if filename.endswith('.npy')]
+        self.labels = dict(zip(labels_ids, labels_values))
 
     def __len__(self):
         # 'Denotes the number of batches per epoch'
@@ -66,24 +61,12 @@ class DeepSwipeDataGenerator(keras.utils.Sequence):
         X = np.empty((self.batch_size, *self.dim, self.n_channels))
         y = np.empty((self.batch_size), dtype=int)
 
-        # print("Shape of X:", X.shape)
-        # print("Shape of y:", y.shape)
-
         # Generate data
         for i, ID in enumerate(list_IDs_temp):
             # Store sample
-            # print("Loading in {}.npy".format(ID))
             tmp = np.load('data/' + ID + '.npy')
-            # print("Shape of {}.npy: {}".format(ID, tmp.shape))
-            tmp = tmp[:, :10, :, :, :] # TODO: HACK! How to fix: make all data 10 frames long 
-
-            # print("New shape of {}.npy: {}".format(ID, tmp.shape))
-
-            # X[i,] = np.load('data/' + ID + '.npy')
+            tmp = tmp[:, :10, :, :, :] # TODO: Fix. Make all data 10 frames long
             X[i,] = tmp
-
-            # print("ID:", ID)
-            # print("i:", i)
 
             # Store class
             y[i] = self.labels[ID]
