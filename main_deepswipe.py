@@ -9,7 +9,7 @@ from models.deepswipe_model import DeepSwipeModel
 from trainers.deepswipe_trainer import DeepSwipeTrainer
 import os
 import numpy as np 
-from utils2 import * 
+from utils import * 
 
 def main():
     """Runs the main deep learning pipeline."""

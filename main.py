@@ -7,9 +7,7 @@ from __future__ import print_function
 from data_loader.simple_mnist_data_loader import SimpleMnistDataLoader
 from models.simple_mnist_model import SimpleMnistModel
 from trainers.simple_mnist_trainer import SimpleMnistModelTrainer
-from utils.config import process_config
-from utils.dirs import create_dirs
-from utils.utils import get_args
+from utils import get_args, create_dirs, process_config
 
 def main():
     """Runs the main deep learning pipeline."""

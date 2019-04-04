@@ -1,7 +1,4 @@
-from utils.config import process_config
-from utils.dirs import create_dirs
-from utils.args import get_args
-from utils import factory
+from utils import * 
 import sys
 
 def main():

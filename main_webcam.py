@@ -11,7 +11,7 @@ import numpy as np
 import cv2
 import re
 import datetime
-from utils2 import * 
+from utils import get_args, process_config, create_dirs
 
 def main():
     """Runs the main deep learning pipeline."""
