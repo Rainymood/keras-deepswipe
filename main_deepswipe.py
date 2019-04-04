@@ -7,11 +7,9 @@ from __future__ import print_function
 from data_loader.deepswipe_data_loader import DeepSwipeDataGenerator
 from models.deepswipe_model import DeepSwipeModel
 from trainers.deepswipe_trainer import DeepSwipeTrainer
-from utils.config import process_config
-from utils.dirs import create_dirs
-from utils.utils import get_args
 import os
 import numpy as np 
+from utils2 import * 
 
 def main():
     """Runs the main deep learning pipeline."""
