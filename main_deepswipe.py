@@ -25,9 +25,22 @@ def main():
         config.callbacks.tensorboard_log_dir, config.callbacks.checkpoint_dir
     ])
 
+    # TODO Refactor this
+    print('Create partitions and labels.')
+    partition = {}
+    all_ids = [filename.split('.')[0] for filename in os.listdir('data') if filename.endswith('.npy')]
+    partition['train'] = all_ids[50:]
+    partition['validation'] = all_ids[:50]
+
+    labels_ids = [filename.split('.')[0] for filename in os.listdir('data') if filename.endswith('.npy')]
+    labels_values = [1 if 'swipe_positive_right' in filename \
+                     else -1 if 'swipe_positive_left' in filename \
+                     else 0 for filename in os.listdir('data') if filename.endswith('.npy')]
+    labels = dict(zip(labels_ids, labels_values))
+
     print('Create the training and validation data generators.')
-    training_generator = DeepSwipeDataGenerator(config)
-    validation_generator = DeepSwipeDataGenerator(config)
+    training_generator = DeepSwipeDataGenerator(config, partition['train'],labels)
+    validation_generator = DeepSwipeDataGenerator(config, partition['validation'], labels)
     data_generator = (training_generator, validation_generator)
 
     print('Create the model.')

@@ -6,7 +6,8 @@ import os
 
 class DeepSwipeDataGenerator(keras.utils.Sequence):
     """Generates data for Keras"""
-    def __init__(self, config, shuffle=True):
+    # def __init__(self, config, shuffle=True):
+    def __init__(self, config, list_IDs, labels, shuffle=True):
         # 'Initialization'
         self.config = config # because we don't super(...).__init__(config)
         self.dim = tuple(self.config.trainer.dim)
@@ -14,21 +15,9 @@ class DeepSwipeDataGenerator(keras.utils.Sequence):
         self.n_channels = self.config.trainer.n_channels
         self.n_classes = self.config.trainer.n_classes
         self.shuffle = shuffle
-
-        self.list_IDs = {} # partition
-        self.labels = {}
-        self.__make_partition()
+        self.list_IDs = list_IDs
+        self.labels = labels
         self.on_epoch_end()
-
-    def __make_partition(self):
-        """Sets list_IDs/partition and labels"""
-        all_ids = [filename.split('.')[0] for filename in os.listdir('./data') if filename.endswith('.npy')]
-        self.list_IDs['train'] = all_ids[50:]
-        self.list_IDs['validation'] = all_ids[:50]
-
-        labels_ids = [filename.split('.')[0] for filename in os.listdir('./data') if filename.endswith('.npy')]
-        labels_values = [1 if 'swipe_positive_right' in filename else -1 if 'swipe_positive_left' in filename else 0 for filename in os.listdir('data') if filename.endswith('.npy')]
-        self.labels = dict(zip(labels_ids, labels_values))
 
     def __len__(self):
         # 'Denotes the number of batches per epoch'
